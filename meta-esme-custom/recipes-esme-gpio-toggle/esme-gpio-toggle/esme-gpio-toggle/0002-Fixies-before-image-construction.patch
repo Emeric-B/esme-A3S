@@ -1,0 +1,105 @@
+From 9ad16ed4e746347bd59bc58a335701729c30d15a Mon Sep 17 00:00:00 2001
+From: Emeric BAHEU <emeric.baheu@esme.com>
+Date: Mon, 1 Dec 2025 16:01:59 +0100
+Subject: [PATCH] Fixies before image construction
+
+---
+ .install/etc/init.d/esme-gpio26-toggle |   8 ++++----
+ .install/usr/bin/esme-gpio-toggle      | Bin 16392 -> 16392 bytes
+ esme-gpio-toggle                       | Bin 13936 -> 13936 bytes
+ esme-gpio26-toggle                     |   8 ++++----
+ gpio.c                                 |   2 +-
+ 5 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/.install/etc/init.d/esme-gpio26-toggle b/.install/etc/init.d/esme-gpio26-toggle
+index 2a52934..bca35b0 100755
+--- a/.install/etc/init.d/esme-gpio26-toggle
++++ b/.install/etc/init.d/esme-gpio26-toggle
+@@ -10,8 +10,8 @@
+ ### END INIT INFO
+ 
+ DAEMON="/usr/bin/gpio"
+-PIDFILE"/var/run/gpio26-toggle.pid"
+-NAME:"esme-gpio-toggle for GPIO#26"
++PIDFILE="/var/run/gpio26-toggle.pid"
++NAME="esme-gpio-toggle for GPIO#26"
+ 
+ case "$1" in
+ 	start)
+@@ -35,8 +35,8 @@ case "$1" in
+ 		;;
+ 
+ 	status)
+-		if [ -f "$PIDFILE" ] && kill -0 "$(cat "PIDFILE")" 2>/dev/null; 
+-			then echo "Status of $NAME: running with PID=$cat "SPIDFILE")"
++		if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; 
++			then echo "Status of $NAME: running with PID=$(cat "SPIDFILE")"
+ 		else
+ 			echo "Status of $NAME: stopped"
+ 		fi
+diff --git a/.install/usr/bin/esme-gpio-toggle b/.install/usr/bin/esme-gpio-toggle
+index ebddc277a105661fc1c344e0cba36d6ced56295d..ffcea3a9c3b029504ce880ed6623ae3375583f58 100755
+GIT binary patch
+delta 59
+zcmeBZVC-mM+)%+Ra`##y&leWI$Z*E8?Btm1J#SmjFWB6}d{2f?KP9zHKfNF`KRF|_
+Pz+mzM1(D4?3N`Wo;Exy>
+
+delta 58
+zcmV-A0LA}^fB}er0kC)j6s2QU2_pI=s)xw3mPf*z=IZ-`>9dRj-W(BfVRLX|WpZ+P
+QaA`0tcWGv6vwI+o9}5y18vp<R
+
+diff --git a/esme-gpio-toggle b/esme-gpio-toggle
+index 08a0ea49f7490a1b0f037161332d612f0f14ef63..edef5fd3480f288c31923d9d53ebb8f7f703bce6 100755
+GIT binary patch
+delta 244
+zcmey6^C4$~1!n*^0|OXObWCQA0dis{uDmW1pLbl+>;B&fRve~+f1|Ud)#T0yZJxq-
+zf>m+{GXui|Ab!Kdz)%CkcYs(2$iJ|;ls%t`Pd_EKOh3IKGe0>av%p~UH_kXlR*gUZ
+z>lrsEa$7S`zQD+{c@CemC}YFs2g)Ukf*_kgfSEx6Oh;@^Rjp@a4A}fsEuYEo02f#g
+zNboa60!bL35y<BO@*|+S85jf^zJU0fTQ$=;88aroHIioqdup<vu`(-2S;S^bV{>Kz
+DxM@35
+
+delta 240
+zcmey6^C4$~1!o910|OXObWCPV0CEy0uDmYtg<<<<^;*&Tw&&Mgeiu?**r98iyLk%Z
+z30BEH%nS@qfcOm)149iEKLBC_ApgqdQucf%p`yg%f~3@<qRN6y1Ksk>v`mK0pE%<f
+z8C5n1a=SBcp2O!X%Gk2`fpQ6>Ajnn_U}g{i(=nS<RqGiULpDEE%V#n?!UYxt68sF2
+zKoZ7h1oC-+{1~Wi1_nWfFChNrR?T!y#+=D-jpSLu9-1s@tjr2h7PHyX*qj*vy^}jz
+
+diff --git a/esme-gpio26-toggle b/esme-gpio26-toggle
+index 2a52934..bca35b0 100644
+--- a/esme-gpio26-toggle
++++ b/esme-gpio26-toggle
+@@ -10,8 +10,8 @@
+ ### END INIT INFO
+ 
+ DAEMON="/usr/bin/gpio"
+-PIDFILE"/var/run/gpio26-toggle.pid"
+-NAME:"esme-gpio-toggle for GPIO#26"
++PIDFILE="/var/run/gpio26-toggle.pid"
++NAME="esme-gpio-toggle for GPIO#26"
+ 
+ case "$1" in
+ 	start)
+@@ -35,8 +35,8 @@ case "$1" in
+ 		;;
+ 
+ 	status)
+-		if [ -f "$PIDFILE" ] && kill -0 "$(cat "PIDFILE")" 2>/dev/null; 
+-			then echo "Status of $NAME: running with PID=$cat "SPIDFILE")"
++		if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; 
++			then echo "Status of $NAME: running with PID=$(cat "SPIDFILE")"
+ 		else
+ 			echo "Status of $NAME: stopped"
+ 		fi
+diff --git a/gpio.c b/gpio.c
+index a812d0d..ba9f25a 100644
+--- a/gpio.c
++++ b/gpio.c
+@@ -6,7 +6,7 @@
+ #include <unistd.h>
+ 
+ #define DEFAULT_GPIO	26
+-#define CHIPNAME	"raspberrypi0-wifi"
++#define CHIPNAME	"/dev/gpiochip0"
+ 
+ 
+ int main(int argc, char **argv){
