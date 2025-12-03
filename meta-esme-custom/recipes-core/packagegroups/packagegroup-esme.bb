@@ -9,24 +9,9 @@ inherit packagegroup
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = ""
 
-RDEPENDS_${PN} = "esme-gpio-toggle"
+RDEPENDS:${PN} = "esme-gpio-toggle"
 # No information for SRC_URI yet (only an external source tree was specified)
 SRC_URI = ""
 
-# NOTE: no Makefile found, unable to determine what needs to be done
 
-do_configure () {
-	# Specify any needed configure commands here
-	:
-}
-
-do_compile () {
-	# Specify compilation commands here
-	:
-}
-
-do_install () {
-	# Specify install commands here
-	:
-}
 
