@@ -7,7 +7,7 @@ inherit packagegroup
 # WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
 # your responsibility to verify that the values are complete and correct.
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = ""
 
 RDEPENDS_${PN} = "esme-gpio-toggle"
 # No information for SRC_URI yet (only an external source tree was specified)
