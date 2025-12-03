@@ -21,12 +21,11 @@ INITSCRIPT_NAME="esme-gpio26-toggle"
 INITSCRIPT_PARAMS="defaults 99"
 
 DEPENDS += "libgpiod (<2.0)"
-# No information for SRC_URI yet (only an external source tree was specified)
-SRC_URI = "https://github.com/Emeric-B/A3S12-gpio-toggle.git \
-           file://0002-Fixies-before-image-construction.patch \
-           file://0001-devtool-esme-gpio-toggle-recipe-update-rc.d.patch \
-           "
 
+# No information for SRC_URI yet (only an external source tree was specified)
+SRC_URI = "git://github.com/Emeric-B/A3S12-gpio-toggle.git;branch=main;protocol=https;subdir=${PN}-${PV}"
+
+SRCREV="${AUTOREV}"
 # NOTE: this is a Makefile-only piece of software, so we cannot generate much of the
 # recipe automatically - you will need to examine the Makefile yourself and ensure
 # that the appropriate arguments are passed in.
